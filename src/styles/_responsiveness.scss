@@ -1,0 +1,30 @@
+$sm: 0px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1440px;
+
+@mixin tablet {
+  @media (max-width: #{$lg}) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width: #{$md}) {
+    @content;
+  }
+}
+
+@mixin absolute-position(
+  $top: null,
+  $right: null,
+  $bottom: null,
+  $left: null,
+  $z-index: null
+) {
+  position: absolute !important;
+  top: $top !important;
+  right: $right !important;
+  bottom: $bottom !important;
+  left: $left !important;
+  z-index: $z-index;
+}

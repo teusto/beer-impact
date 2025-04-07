@@ -1,0 +1,20 @@
+@use "../../styles/colors" as *;
+@use "../../styles/responsiveness" as *;
+
+.rating{
+    display: flex;
+    align-items: center;
+    gap: .5em;
+
+    .star{
+        transition: color .3s ease-in-out;
+        cursor: pointer;
+        &.filled{
+            color: $yellow;
+        }
+
+        &.outline{
+            color: #c0c0c0af;
+        }
+    }
+}

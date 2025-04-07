@@ -1,0 +1,31 @@
+@use "../../styles/colors" as *;
+@use "../../styles/responsiveness" as *;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    cursor: default;
+    p{
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    input{
+        border-radius: 8px;
+        border: none;
+        padding: .8em;
+    }
+    input[type="submit"]{
+        background-color: $yellow;
+        border: none;
+        border-radius: 8px;
+        padding: .8em;
+        cursor: pointer;
+        color: $white;
+        font-weight: bold;
+        box-shadow: rgba(203, 162, 29, 0.723) 0px 0px 5px 2px;
+    }
+    label{
+        color: $black;
+    }
+}

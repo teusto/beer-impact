@@ -1,0 +1,16 @@
+*, *:before, *:after{
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a{
+  text-decoration: none;
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
