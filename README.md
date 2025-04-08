@@ -21,6 +21,7 @@ A modern, interactive beer catalog application built with React and TypeScript. 
 - Rate beers
 - Add new beers to the collection
 - Responsive design for mobile and desktop
+- Storing beers collection in localStorage
 
 ## 🏗️ Project Structure
 
@@ -77,8 +78,6 @@ src/
 
 ### Component Architecture
 
-The application follows a component-based architecture where each component is responsible for a specific functionality:
-
 - **Skeleton**: Provides the overall layout structure
 - **Grid**: Displays the beer cards in a responsive grid
 - **Beer**: Shows detailed information about a selected beer
@@ -91,6 +90,8 @@ The application follows a component-based architecture where each component is r
 - Add unit tests
 - Implement beer categories and additional filters
 - Add user authentication
+- Find a good api to fetch beers images
+- Add validations
 
 ## 👨‍💻 Author
 

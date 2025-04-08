@@ -29,7 +29,6 @@ const Form = () => {
         reset();
     }
 
-    console.log(watch("name"))
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             <p><IoBeer /> Add a new beer on your collection</p>

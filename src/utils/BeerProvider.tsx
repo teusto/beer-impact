@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const BeerContext = createContext<IBeerContext>({} as IBeerContext);
 
@@ -136,7 +136,15 @@ const BeerProvider = ({children}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [newBeer, setNewBeer] = useState<creation>({formData: {}, status: 'initial'});
     const [filters, setFilters] = useState<IFilter>({year: '', abvMin: 0, abvMax: 15});
-    const [collection, setCollection] = useState<BeerType[]>(INITIAL_COLLECTION)
+    const [collection, setCollection] = useState<BeerType[]>(() => {
+        try {
+            const storedCollection = localStorage.getItem('collection');
+            return storedCollection ? JSON.parse(storedCollection) : INITIAL_COLLECTION;
+        } catch (error) {
+            console.error('Local storage error:', error);
+            return INITIAL_COLLECTION;
+        }
+    })
 
     const addBeerToCollection = (beer: Partial<BeerType>) => {
         const newId = collection.length > 0 ? Math.max(...collection.map(data => data.id)) + 1 : 1;
@@ -147,6 +155,7 @@ const BeerProvider = ({children}) => {
             description: beer.description || 'No description provided',
             image_url: '',
             abv: beer.abv || 6.0,
+            ibu: beer.ibu || 0,
             brewedFirst: '01/2025',
             rating: 0,
         };
@@ -164,6 +173,18 @@ const BeerProvider = ({children}) => {
 
         return updatedCollection.find(item => item.id === id);
     }
+
+    //TODO set a first beer to render if none is selected
+    useEffect(() => {
+        if(collection.length > 0 && !beer.id) {
+            setBeer(collection[0]);
+        }
+    }, [collection]);
+
+    //TODO store user data locally to maintain collection between sessions
+    useEffect(() => {
+        localStorage.setItem('collection', JSON.stringify(collection));
+    }, [collection]);
 
     return <BeerContext.Provider value={{beer, setBeer, setSearchTerm, searchTerm, newBeer, setNewBeer, filters, setFilters, collection, setCollection, addBeerToCollection, updateBeerRating}}>{children}</BeerContext.Provider>;
 };
